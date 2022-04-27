@@ -22,8 +22,13 @@ const totalPremiumDisplay = computed(() => {
     form.selectedPlan.percentageOfAdditionalPayment
   );
 
-  return `${totalPremium.toLocaleString()}${form.selectedCountry?.currency}`;
+  return `${totalPremium.toLocaleString()}${form.selectedCountry.currency}`;
 });
+
+const handleBuyClick = () => {
+  form.$reset();
+  router.push('/');
+};
 </script>
 
 <template>
@@ -46,7 +51,13 @@ const totalPremiumDisplay = computed(() => {
 
     <div class="navigation">
       <RouterLink class="button button-secondary" to="/about">Back</RouterLink>
-      <RouterLink class="button button-primary" to="/">Buy</RouterLink>
+      <a
+        class="button button-primary"
+        href="javascript:void(0)"
+        @click="handleBuyClick"
+      >
+        Buy
+      </a>
     </div>
   </main>
 </template>

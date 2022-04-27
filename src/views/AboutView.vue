@@ -26,7 +26,7 @@ const additionalPaymentDisplay = (percentageOfAdditionalPayment: number) => {
     percentageOfAdditionalPayment
   );
   return `+${additionalPayment.toLocaleString()}${
-    form.selectedCountry?.currency
+    form.selectedCountry.currency
   }`;
 };
 
@@ -39,10 +39,10 @@ const totalPremiumDisplay = computed(() => {
     form.selectedPlan.percentageOfAdditionalPayment
   );
 
-  return `${totalPremium.toLocaleString()}${form.selectedCountry?.currency}`;
+  return `${totalPremium.toLocaleString()}${form.selectedCountry.currency}`;
 });
 
-const next = () => {
+const handleNextClick = () => {
   if (!form.name || !filledUpTheCalculableInfo.value) {
     alert('Please fill up all of the information.');
     return;
@@ -104,7 +104,11 @@ const next = () => {
 
     <div class="navigation">
       <RouterLink class="button button-secondary" to="/">Back</RouterLink>
-      <a class="button button-primary" href="javascript:void(0)" @click="next">
+      <a
+        class="button button-primary"
+        href="javascript:void(0)"
+        @click="handleNextClick"
+      >
         Next
       </a>
     </div>

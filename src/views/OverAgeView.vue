@@ -10,6 +10,11 @@ const form = useFormStore();
 if (!form.age || !form.selectedCountry || !form.selectedPlan) {
   router.push('/about');
 }
+
+const handleOkClick = () => {
+  form.$reset();
+  router.push('/');
+};
 </script>
 
 <template>
@@ -19,7 +24,13 @@ if (!form.age || !form.selectedCountry || !form.selectedPlan) {
       Your age is over our accepted limit.<br />We are sorry but we cannot
       insure you now.
     </p>
-    <RouterLink class="button button-primary" to="/">Ok</RouterLink>
+    <a
+      class="button button-primary"
+      href="javascript:void(0)"
+      @click="handleOkClick"
+    >
+      Ok
+    </a>
   </main>
 </template>
 

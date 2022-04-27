@@ -14,10 +14,12 @@ interface IState {
 
 export const useFormStore = defineStore({
   id: 'form',
-  state: (): IState => ({
-    name: '',
-    age: null,
-    selectedCountry: countries[0],
-    selectedPlan: PLANS[0],
-  }),
+  state: (): IState => {
+    return {
+      name: '',
+      age: null,
+      selectedCountry: countries[0],
+      selectedPlan: PLANS[0],
+    };
+  },
 });
