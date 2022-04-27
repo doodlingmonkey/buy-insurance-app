@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 import type { ICountry } from './../types/datas/countries';
 import type { IPlan } from './../types/datas/plans';
 import countries from './../datas/countries';
-import plans from './../datas/plans';
+import { PLANS } from './../datas/plans';
 
 interface IState {
   name: string;
@@ -18,6 +18,6 @@ export const useFormStore = defineStore({
     name: '',
     age: null,
     selectedCountry: countries[0],
-    selectedPlan: plans[0],
+    selectedPlan: PLANS[0],
   }),
 });

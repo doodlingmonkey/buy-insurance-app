@@ -1,6 +1,6 @@
 import type { ICountry } from '@/types/datas/countries';
 
-const countries: ICountry[] = [
+const COUNTRIES: ICountry[] = [
   {
     name: 'Hong Kong',
     currency: 'HKD',
@@ -18,4 +18,4 @@ const countries: ICountry[] = [
   },
 ];
 
-export default countries;
+export default COUNTRIES;

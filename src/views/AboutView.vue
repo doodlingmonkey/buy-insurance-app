@@ -6,8 +6,8 @@ import {
   calculateAdditionalPayment,
   calculateTotalPremium,
 } from './../logic/premium-calculator';
-import countries from './../datas/countries';
-import plans from './../datas/plans';
+import COUNTRIES from './../datas/countries';
+import { PLANS, MAX_AGE } from './../datas/plans';
 import { useFormStore } from './../stores/form';
 
 const router = useRouter();
@@ -48,6 +48,11 @@ const next = () => {
     return;
   }
 
+  if (form.age && form.age > MAX_AGE) {
+    router.push('/over-age');
+    return;
+  }
+
   router.push('/summary');
 };
 </script>
@@ -72,7 +77,7 @@ const next = () => {
 
         <select v-model="form.selectedCountry">
           <option
-            v-for="country in countries"
+            v-for="country in COUNTRIES"
             v-bind:key="country.name"
             :value="country"
           >
@@ -82,7 +87,7 @@ const next = () => {
       </label>
 
       <div v-if="filledUpTheCalculableInfo" class="package-options">
-        <label v-for="plan in plans" v-bind:key="plan.name" class="radio">
+        <label v-for="plan in PLANS" v-bind:key="plan.name" class="radio">
           <input type="radio" v-model="form.selectedPlan" v-bind:value="plan" />
           &nbsp;{{ plan.name }}&nbsp;
           <span v-if="plan.percentageOfAdditionalPayment">
@@ -107,12 +112,6 @@ const next = () => {
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .fields {
   width: 250px;
   display: flex;

@@ -13,12 +13,6 @@ import { RouterLink } from 'vue-router';
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .instructions {
   margin: 5px 0 20px;
 }

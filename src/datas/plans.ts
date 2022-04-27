@@ -1,6 +1,8 @@
 import type { IPlan } from '@/types/datas/plans';
 
-const plans: IPlan[] = [
+const MAX_AGE = 99;
+
+const PLANS: IPlan[] = [
   {
     name: 'Standard',
     percentageOfAdditionalPayment: 0,
@@ -15,4 +17,4 @@ const plans: IPlan[] = [
   },
 ];
 
-export default plans;
+export { PLANS, MAX_AGE };
