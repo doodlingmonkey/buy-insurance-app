@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
 
 import {
   calculateAdditionalPayment,
@@ -7,9 +8,10 @@ import {
 } from './../logic/premium-calculator';
 import countries from './../datas/countries';
 import plans from './../datas/plans';
-import { useCounterStore } from './../stores/form';
+import { useFormStore } from './../stores/form';
 
-const form = useCounterStore();
+const router = useRouter();
+const form = useFormStore();
 
 const filledUpTheCalculableInfo = computed(() => {
   return form.age && form.selectedCountry;
@@ -43,9 +45,10 @@ const totalPremiumDisplay = computed(() => {
 const next = () => {
   if (!form.name || !filledUpTheCalculableInfo.value) {
     alert('Please fill up all of the information.');
+    return;
   }
 
-  // Go to next
+  router.push('/summary');
 };
 </script>
 
@@ -58,29 +61,25 @@ const next = () => {
         <input type="text" v-model="form.name" />
       </label>
 
-      <div>
-        <label class="label">
-          Age
+      <label class="label">
+        Age
 
-          <input type="number" min="1" v-model="form.age" />
-        </label>
-      </div>
+        <input type="number" min="1" v-model="form.age" />
+      </label>
 
-      <div>
-        <label class="label">
-          Where do you live
+      <label class="label">
+        Where do you live
 
-          <select v-model="form.selectedCountry">
-            <option
-              v-for="country in countries"
-              v-bind:key="country.name"
-              :value="country"
-            >
-              {{ country.name }}
-            </option>
-          </select>
-        </label>
-      </div>
+        <select v-model="form.selectedCountry">
+          <option
+            v-for="country in countries"
+            v-bind:key="country.name"
+            :value="country"
+          >
+            {{ country.name }}
+          </option>
+        </select>
+      </label>
 
       <div v-if="filledUpTheCalculableInfo" class="package-options">
         <label v-for="plan in plans" v-bind:key="plan.name" class="radio">
@@ -113,28 +112,22 @@ const next = () => {
   flex-direction: column;
   align-items: center;
 }
+
 .fields {
   width: 250px;
   display: flex;
   flex-direction: column;
 }
-.fields .label {
-  display: block;
-}
+
 .fields input[type='text'],
 .fields input[type='number'] {
   width: 100%;
   padding: 6px 5px;
 }
+
 .fields select {
   width: 100%;
   padding: 6.25px 5px;
-}
-.navigation {
-  margin-top: 30px;
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .package-options {

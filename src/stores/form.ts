@@ -12,7 +12,7 @@ interface IState {
   selectedPlan: IPlan | null;
 }
 
-export const useCounterStore = defineStore({
+export const useFormStore = defineStore({
   id: 'form',
   state: (): IState => ({
     name: '',
